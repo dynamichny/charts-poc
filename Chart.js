@@ -1,12 +1,82 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useRef, useEffect} from 'react';
+import {StyleSheet, View, Dimensions, ActivityIndicator} from 'react-native';
+import {
+  ChartDot,
+  ChartPath,
+  ChartPathProvider,
+  monotoneCubicInterpolation,
+} from '@rainbow-me/animated-charts';
+import {violet} from './Constants';
+
+const {width: SIZE} = Dimensions.get('window');
 
 export default function Chart({data}) {
+  const points = useRef([
+    {x: 1628852294.691, y: 40429.18},
+    {x: 1628983002.3833077, y: 39420.58788718597},
+    {x: 1629113710.0756154, y: 40387.17008698718},
+    {x: 1629244417.767923, y: 38544.738675466375},
+    {x: 1629375125.4602308, y: 38990.79599689897},
+    {x: 1629505833.1525385, y: 40120.79},
+    {x: 1629636540.8448462, y: 40153.09340464374},
+    {x: 1629767248.5371537, y: 41247.355569719075},
+    {x: 1629897956.2294614, y: 41544.171709403},
+    {x: 1630028663.9217691, y: 40970.31257028745},
+    {x: 1630159371.6140769, y: 41440.789480936364},
+    {x: 1630290079.3063846, y: 41253.48143693612},
+    {x: 1630420786.9986923, y: 39898.730359249006},
+    {x: 1630551494.691, y: 41357.181029179905},
+    {x: 1630682202.3833077, y: 42077.724499073905},
+    {x: 1630812910.0756154, y: 42963.60697629823},
+    {x: 1630943617.767923, y: 43715.82070941392},
+    {x: 1631074325.4602308, y: 39091.30326128315},
+    {x: 1631205033.1525385, y: 38994.99819721764},
+    {x: 1631335740.8448462, y: 38205.81775097424},
+    {x: 1631466448.5371537, y: 38817.48278292114},
+    {x: 1631597156.2294614, y: 39506.48957214148},
+    {x: 1631727863.9217691, y: 40779.78807886188},
+    {x: 1631858571.6140769, y: 40251.984959962305},
+    {x: 1631989279.3063846, y: 41113.38274465189},
+    {x: 1632119986.9986923, y: 37215.07365313049},
+    {x: 1632250694.691, y: 35388.451481481476},
+    {x: 1632381402.3833077, y: 38267.2930769231},
+    {x: 1632512110.0756154, y: 36471.06314821047},
+    {x: 1632642817.767923, y: 36731.679728882475},
+    {x: 1632773525.4602308, y: 36388.2492262155},
+    {x: 1632904233.1525385, y: 35467.5734533634},
+    {x: 1633034940.8448462, y: 37199.04},
+    {x: 1633165648.5371537, y: 37199.04},
+    {x: 1633296356.2294614, y: 38543.15834774142},
+    {x: 1633427063.9217691, y: 43523.74914681402},
+    {x: 1633557771.6140769, y: 47350.55607278542},
+    {x: 1633688479.3063846, y: 46984.522377150766},
+    {x: 1633819186.9986923, y: 47470.33159763279},
+    {x: 1633949894.691, y: 48710.25},
+  ]);
+
+  useEffect(() => {
+    const d = data.map(a => ({x: a.time, y: a.close}));
+    points.current = monotoneCubicInterpolation({data: d, range: 40});
+    console.log(points.current);
+  }, [data]);
+
+  if (!points.current) {
+    return <ActivityIndicator />;
+  }
+
   return (
-    <View>
-      <Text></Text>
+    <View style={s.wrapper}>
+      <ChartPathProvider
+        data={{points: points.current, smoothingStrategy: 'bezier'}}>
+        <ChartPath height={SIZE / 2} stroke={violet[60]} width={SIZE} />
+        {/* <ChartDot style={{backgroundColor: 'black'}} /> */}
+      </ChartPathProvider>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const s = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+});
