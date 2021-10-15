@@ -15,10 +15,20 @@ export const grey = {
   85: '#f5f5f5', // not symbol in Sketch: equity background,
   86: '#f7f7f7', // not symbol in Sketch: drag handle on popover
   100: '#ffffff', // not symbol in Sketch: screen background, primary text title
-}
+};
 
 export const violet = {
   40: '#6432fa', // not symbol in Sketch: button border
   50: '#6d22ff', // not symbol in Sketch: button text
   60: '#3d06dc', // not symbol in Sketch: button pressed color (text and border)
-}
+};
+
+export const red = {
+  50: '#EB4573', // Cabaret
+  70: '#ff2d71', // not symbol in Sketch: Trading amount input border color for error
+};
+
+export const green = {
+  50: '#41B844',
+  60: '#39ad3c',
+};
