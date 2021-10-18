@@ -14,11 +14,15 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: 'gray',
     fontWeight: '600',
+    margin: 0,
+    padding: 0,
   },
   value: {
     fontSize: 16,
     fontWeight: '700',
     fontVariant: ['tabular-nums'],
+    margin: 0,
+    padding: 0,
   },
 });
 

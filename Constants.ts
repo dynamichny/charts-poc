@@ -29,6 +29,6 @@ export const red = {
 };
 
 export const green = {
-  50: '#41B844',
-  60: '#39ad3c',
+  50: '#2BAE66',
+  60: '#2BAE66',
 };

@@ -17,7 +17,7 @@ export default function Button({label, onPress, isActive, children}: Props) {
         style={styles.touchable}
         activeOpacity={0.8}>
         {children ? (
-          children
+          <View style={{paddingVertical: 8}}>{children}</View>
         ) : (
           <Text style={[styles.text, isActive ? styles.textActive : {}]}>
             {label?.toUpperCase()}
@@ -38,10 +38,9 @@ const styles = StyleSheet.create({
   },
   touchable: {
     paddingHorizontal: 12,
-    paddingVertical: 8,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {color: '#000', fontSize: 16, fontWeight: '700'},
+  text: {color: '#000', fontSize: 14, fontWeight: '700', paddingVertical: 8},
   textActive: {color: '#fff'},
 });

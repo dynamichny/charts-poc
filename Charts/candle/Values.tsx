@@ -13,17 +13,15 @@ const Values = () => {
   const {candles, step, translateX} = useCandleChartContext();
   const {selectedCandlestickData} = useChartsDataContext();
   const {value, date} = useChartsDataContext();
-  const candle = useDerivedValue(() => {
+  useDerivedValue(() => {
     const c =
       candles[Math.floor(translateX.value / step)] ||
       candles[candles.length - 1];
     date.value = c.time * 1000;
     value.value = c.close;
     selectedCandlestickData.value = c;
-    return c;
   });
   const open = useDerivedValue(() => {
-    console.log(candle);
     return `${formatCurrency(selectedCandlestickData?.value?.open || 0)}`;
   });
   const close = useDerivedValue(
@@ -35,25 +33,6 @@ const Values = () => {
   const high = useDerivedValue(
     () => `${formatCurrency(selectedCandlestickData?.value?.high || 0)}`,
   );
-  // const diff = useDerivedValue(
-  //   () =>
-  //     `${
-  //       ((selectedCandlestickData?.value?.close -
-  //         selectedCandlestickData?.value?.open) *
-  //         100) /
-  //         candle?.value?.open || 0
-  //     }`,
-  // );
-  // const change = useDerivedValue(
-  //   () =>
-  //     `${
-  //       selectedCandlestickData?.value?.close -
-  //         selectedCandlestickData?.value?.open <
-  //       0
-  //         ? diff.value.substring(0, 5)
-  //         : diff.value.substring(0, 4) || 0
-  //     }%`,
-  // );
 
   return (
     <SafeAreaView>

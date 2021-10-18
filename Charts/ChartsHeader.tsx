@@ -35,23 +35,32 @@ const ChartsHeader = () => {
 
   const valueStyle = useAnimatedStyle(() => ({
     color: value.value >= data[0].close ? green[50] : red[50],
+    fontSize: 24,
+    fontWeight: '700',
+    padding: 0,
   }));
   const diffStyle = useAnimatedStyle(() => ({
     color: value.value >= data[0].close ? green[50] : red[50],
+    fontSize: 20,
+    fontWeight: '500',
+    padding: 0,
   }));
   const changeStyle = useAnimatedStyle(() => ({
     color: value.value >= data[0].close ? green[50] : red[50],
+    fontSize: 20,
+    fontWeight: '500',
+    padding: 0,
   }));
 
   return (
     <View style={styles.row}>
-      <View style={{flex: 1.5}}>
-        <ReText text={formattedValue} style={[styles.value, valueStyle]} key={'value'} />
+      <View style={{flex: 2}}>
+        <ReText text={formattedValue} style={valueStyle} key={'value'} />
         <ReText text={formattedDate} style={[styles.date]} key={'date'} />
       </View>
       <View style={{flex: 1}}>
-        <ReText text={change} style={[styles.diff, changeStyle]} key={'change'} />
-        <ReText text={diffDisplayed} style={[styles.diff, diffStyle]} key={'diff'} />
+        <ReText text={change} style={diffStyle} key={'change'} />
+        <ReText text={diffDisplayed} style={changeStyle} key={'diff'} />
       </View>
     </View>
   );
@@ -64,20 +73,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flex: 1,
-    paddingRight: 16,
-  },
-  value: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: '#000000',
   },
   date: {
     fontSize: 12,
     fontWeight: '700',
     color: '#909090',
-  },
-  diff: {
-    fontSize: 20,
-    fontWeight: '500',
+    padding: 0,
   },
 });

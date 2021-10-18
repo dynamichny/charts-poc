@@ -21,7 +21,7 @@ const Coinbase = () => {
   const onGestureEvent = useAnimatedGestureHandler({
     onActive: ({x, y}) => {
       opacity.value = 1;
-      translateY.value = clamp(y, 0, size.width);
+      translateY.value = clamp(y, 0, size.height);
       translateX.value = x - (x % step) + step / 2;
     },
     onEnd: () => {

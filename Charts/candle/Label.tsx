@@ -41,7 +41,7 @@ const Label = ({translateY, opacity}: LabelProps) => {
   }));
   return (
     <Animated.View style={[styles.container, horizontal]}>
-      <ReText {...{text}} style={{color: 'white'}} />
+      <ReText {...{text}} style={{color: 'white', padding: 0}} />
     </Animated.View>
   );
 };

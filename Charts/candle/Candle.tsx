@@ -24,8 +24,8 @@ interface CandleProps {
 const Candle = ({candle, index, width}: CandleProps) => {
   const {scaleY, scaleBody} = useCandleChartContext();
   const {close, open, high, low} = candle;
-  const fill = close > open ? '#4AFA9A' : '#E33F64';
-  const stroke = close > open ? green[60] : red[70];
+ // const fill = close > open ? '#4AFA9A' : '#E33F64';
+  const fill = close > open ? green[50] : red[70];
   const x = index * width;
   const max = Math.max(open, close);
   const min = Math.min(open, close);
@@ -36,7 +36,7 @@ const Candle = ({candle, index, width}: CandleProps) => {
         y1={scaleY(low)}
         x2={x + width / 2}
         y2={scaleY(high)}
-        stroke={stroke}
+        stroke={fill}
         strokeWidth={1}
       />
       <Rect
@@ -44,7 +44,8 @@ const Candle = ({candle, index, width}: CandleProps) => {
         y={scaleY(max)}
         width={width - MARGIN * 2}
         height={scaleBody(max - min)}
-        stroke={stroke}
+        stroke={fill}
+        rx={1}
         {...{fill}}
       />
     </>
