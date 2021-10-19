@@ -7,7 +7,7 @@ import {useCandleChartContext} from './CandleChartContext';
 const Chart = () => {
   const {size, step, candles} = useCandleChartContext();
   return (
-    <Svg width={size.width} height={size.width}>
+    <Svg width={size.width} height={size.height}>
       {candles.map((candle, index) => (
         <Candle key={candle.time} width={step} {...{candle, index}} />
       ))}

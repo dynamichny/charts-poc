@@ -18,7 +18,7 @@ export default function CandleChartProvider({
 
   const scaleY = (value: number) => {
     'worklet';
-    return interpolate(value, domain, [size.width, 0], Extrapolate.CLAMP);
+    return interpolate(value, domain, [size.height, 0], Extrapolate.CLAMP);
   };
 
   const scaleBody = (value: number) => {
@@ -26,7 +26,7 @@ export default function CandleChartProvider({
     return interpolate(
       value,
       [0, Math.max(...domain) - Math.min(...domain)],
-      [0, size.width],
+      [0, size.height],
       Extrapolate.CLAMP,
     );
   };
@@ -42,7 +42,7 @@ export default function CandleChartProvider({
 
   const scaleYInvert = (y: number) => {
     'worklet';
-    return interpolate(y, [0, size.width], domainReversed, Extrapolate.CLAMP);
+    return interpolate(y, [0, size.height], domainReversed, Extrapolate.CLAMP);
   };
 
   const contextValue = useMemo(

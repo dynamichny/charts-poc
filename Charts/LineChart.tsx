@@ -40,10 +40,12 @@ const Chart = ({size}: {size: {width: number; height: number}}) => {
         selectedStrokeWidth={2}
         negativeColor={red[50]}
         positiveColor={green[50]}
+        hapticsEnabled={true}
+        
       />
       <ChartDot style={{backgroundColor: violet[60]}} />
-      <ChartLine color={violet[60]} height={size.height} />
-      <ChartZeroLine color={violet[60]} width={size.width} />
+      <ChartLine color={violet[60]} length={size.height} />
+      <ChartZeroLine color={violet[60]} length={size.width} />
     </View>
   );
 };

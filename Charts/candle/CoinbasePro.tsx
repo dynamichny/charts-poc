@@ -38,7 +38,7 @@ const Coinbase = () => {
   }));
   return (
     <View>
-      <View>
+      <View style={{width: size.width, height: size.height}}>
         <Chart />
         <PanGestureHandler minDist={0} {...{onGestureEvent}}>
           <Animated.View style={StyleSheet.absoluteFill}>
@@ -72,7 +72,7 @@ const CoinbaseWithProvider = ({
 }) => {
   return (
     <CandleChartProvider data={data} size={size}>
-      {active && <Coinbase />}
+      {active && <Coinbase size={size} />}
     </CandleChartProvider>
   );
 };

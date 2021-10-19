@@ -25,7 +25,7 @@ const App = () => {
         }}></View>
       <Charts
         data={data[period] as Candle[]}
-        size={{width: SIZE, height: SIZE}}
+        size={{width: SIZE, height: SIZE / 2}}
         isCandleActive={isCandleActive}
       />
       <View style={styles.buttons}>
