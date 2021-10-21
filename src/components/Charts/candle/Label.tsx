@@ -1,14 +1,13 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, {
   useDerivedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import {ReText} from 'react-native-redash';
-import {violet} from '../../Constants';
-import {useCandleChartContext} from './CandleChartContext';
-
-import {formatCurrency} from './ChartHelpers';
+import { ReText } from 'react-native-redash';
+import { violet } from '../../../constants/colors';
+import { useCandleChartContext } from './CandleChartContext';
+import { formatCurrency } from '../../../utils/ChartHelpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,8 +27,8 @@ interface LabelProps {
   opacity: Animated.SharedValue<number>;
 }
 
-const Label = ({translateY, opacity}: LabelProps) => {
-  const {scaleYInvert} = useCandleChartContext();
+const Label = ({ translateY, opacity }: LabelProps) => {
+  const { scaleYInvert } = useCandleChartContext();
   const text = useDerivedValue(() => {
     const price = scaleYInvert(translateY.value);
     return formatCurrency(price);
@@ -37,11 +36,11 @@ const Label = ({translateY, opacity}: LabelProps) => {
 
   const horizontal = useAnimatedStyle(() => ({
     opacity: opacity.value,
-    transform: [{translateY: translateY.value}],
+    transform: [{ translateY: translateY.value }],
   }));
   return (
     <Animated.View style={[styles.container, horizontal]}>
-      <ReText {...{text}} style={{color: 'white', padding: 0}} />
+      <ReText {...{ text }} style={{ color: 'white', padding: 0 }} />
     </Animated.View>
   );
 };

@@ -1,14 +1,14 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import Svg, {Line} from 'react-native-svg';
-import {violet} from '../../Constants';
+import { StyleSheet } from 'react-native';
+import Svg, { Line } from 'react-native-svg';
+import { violet } from '../../../constants/colors';
 
 interface LineProps {
   x: number;
   y: number;
 }
 
-const LineComp = ({x, y}: LineProps) => {
+const LineComp = ({ x, y }: LineProps) => {
   return (
     <Svg style={[StyleSheet.absoluteFill]}>
       <Line

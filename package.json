@@ -10,12 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@rainbow-me/animated-charts": "../../Personal/react-native-animated-charts",
+    "@rainbow-me/animated-charts": "https://github.com/dynamichny/react-native-animated-charts",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0",
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-haptic-feedback": "^1.11.0",
     "react-native-reanimated": "2.1.0",
     "react-native-redash": "^16.2.2",
     "react-native-safe-area-context": "^3.3.2",

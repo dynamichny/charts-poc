@@ -1,10 +1,16 @@
-import React, {createContext, useContext, useMemo, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import Animated, {useSharedValue} from 'react-native-reanimated';
-import {Candle} from './candle/Candle';
+import React, { createContext, useContext, useMemo } from 'react';
+import { StyleSheet, View } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useDerivedValue,
+  runOnJS,
+} from 'react-native-reanimated';
+import { Candle } from './candle/Candle';
 import LineChart from './LineChart';
 import ChartsHeader from './ChartsHeader';
 import CandleChart from './candle';
+
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 
 interface ChartsDataContextData {
   data: Candle[];
@@ -18,14 +24,31 @@ export const useChartsDataContext = () => useContext(ChartsDataContext);
 
 interface Props {
   data: Candle[];
-  size: {width: number; height: number};
+  size: { width: number; height: number };
   isCandleActive: boolean;
 }
 
-const Charts = ({data, size, isCandleActive}: Props) => {
+const options = {
+  enableVibrateFallback: true,
+  ignoreAndroidSystemSettings: true,
+};
+
+function impact() {
+  'worklet';
+  (runOnJS
+    ? runOnJS(ReactNativeHapticFeedback.trigger)
+    : ReactNativeHapticFeedback.trigger)('clockTick', options);
+}
+
+const Charts = ({ data, size, isCandleActive }: Props) => {
   const value = useSharedValue(data[data.length - 1].close);
   const date = useSharedValue(data[data.length - 1].time * 1000);
   const selectedCandlestickData = useSharedValue(data[data.length - 1]);
+
+  useDerivedValue(() => {
+    console.log(value.value);
+    impact();
+  }, [value.value]);
 
   const contextValue = useMemo(
     () => ({
@@ -34,7 +57,7 @@ const Charts = ({data, size, isCandleActive}: Props) => {
       date,
       selectedCandlestickData,
     }),
-    [data, selectedCandlestickData, value, date],
+    [data, selectedCandlestickData, value, date]
   );
 
   return (

@@ -1,21 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {useChartsDataContext} from './Charts';
-import {ReText} from 'react-native-redash';
-import {formatDatetime, formatCurrency} from './candle/ChartHelpers';
-import {useAnimatedStyle, useDerivedValue} from 'react-native-reanimated';
-import {green, red} from '../Constants';
+import { StyleSheet, View } from 'react-native';
+import { useChartsDataContext } from './Charts';
+import { ReText } from 'react-native-redash';
+import { formatDatetime, formatCurrency } from '../../utils/ChartHelpers';
+import { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated';
+import { green, red } from '../../constants/colors';
 
 const ChartsHeader = () => {
-  const {value, date, data} = useChartsDataContext();
+  const { value, date, data } = useChartsDataContext();
+
   const formattedValue = useDerivedValue(
-    () => `${formatCurrency(value.value)}`,
+    () => `${formatCurrency(value.value)}`
   );
   const formattedDate = useDerivedValue(() => `${formatDatetime(date.value)}`);
 
   const diff = useDerivedValue(
     () => Number(Number(value.value - data[0].close).toFixed(2)),
-    [value, data],
+    [value, data]
   );
   const diffSign = useDerivedValue(() => {
     return diff.value >= 0 ? '+' : '';
@@ -23,14 +24,14 @@ const ChartsHeader = () => {
 
   const diffDisplayed = useDerivedValue(
     () => `${diffSign.value}${formatCurrency(diff.value)}`,
-    [value],
+    [value]
   );
   const change = useDerivedValue(
     () =>
       `${diffSign.value}${Number((diff.value / data[0].close) * 100).toFixed(
-        2,
+        2
       )}%`,
-    [value, data],
+    [value, data]
   );
 
   const valueStyle = useAnimatedStyle(() => ({
@@ -54,11 +55,11 @@ const ChartsHeader = () => {
 
   return (
     <View style={styles.row}>
-      <View style={{flex: 2}}>
+      <View style={{ flex: 2 }}>
         <ReText text={formattedValue} style={valueStyle} key={'value'} />
         <ReText text={formattedDate} style={[styles.date]} key={'date'} />
       </View>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <ReText text={change} style={diffStyle} key={'change'} />
         <ReText text={diffDisplayed} style={changeStyle} key={'diff'} />
       </View>

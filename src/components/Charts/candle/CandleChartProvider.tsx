@@ -1,8 +1,8 @@
-import React, {useMemo} from 'react';
-import {interpolate, Extrapolate} from 'react-native-reanimated';
-import {Candle} from './Candle';
+import React, { useMemo } from 'react';
+import { interpolate, Extrapolate } from 'react-native-reanimated';
+import { Candle } from './Candle';
 
-import CandleChartContext, {useGenerateValues} from './CandleChartContext';
+import CandleChartContext, { useGenerateValues } from './CandleChartContext';
 
 export default function CandleChartProvider({
   data: candles,
@@ -10,7 +10,7 @@ export default function CandleChartProvider({
   children,
 }: {
   data: Candle[];
-  size: {width: number; height: number};
+  size: { width: number; height: number };
   children?: JSX.Element;
 }) {
   const values = useGenerateValues();
@@ -27,13 +27,13 @@ export default function CandleChartProvider({
       value,
       [0, Math.max(...domain) - Math.min(...domain)],
       [0, size.height],
-      Extrapolate.CLAMP,
+      Extrapolate.CLAMP
     );
   };
 
   const getDomain = (rows: Candle[]): [number, number] => {
     'worklet';
-    const values = rows.map(({high, low}) => [high, low]).flat();
+    const values = rows.map(({ high, low }) => [high, low]).flat();
     return [Math.min(...values), Math.max(...values)];
   };
 
@@ -67,7 +67,7 @@ export default function CandleChartProvider({
       scaleBody,
       getDomain,
       domainReversed,
-    ],
+    ]
   );
 
   return (

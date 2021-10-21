@@ -1,11 +1,8 @@
-import {round} from 'react-native-redash';
+import { round } from 'react-native-redash';
 
 export const formatCurrency = (value: number) => {
   'worklet';
-  return `${round(value, 2).toLocaleString('de-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  })}`;
+  return `${round(value, 2).toLocaleString('de-DE')}€`;
 };
 
 export const formatDatetime = (value: number) => {

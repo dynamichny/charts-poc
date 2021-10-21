@@ -1,18 +1,18 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import Animated, {useDerivedValue} from 'react-native-reanimated';
-import {ReText} from 'react-native-redash';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Animated, { useDerivedValue } from 'react-native-reanimated';
+import { ReText } from 'react-native-redash';
 
 import Row from './Row';
-import {formatDatetime, formatCurrency} from './ChartHelpers';
-import {useCandleChartContext} from './CandleChartContext';
-import {useChartsDataContext} from '../Charts';
+import { formatDatetime, formatCurrency } from '../../../utils/ChartHelpers';
+import { useCandleChartContext } from './CandleChartContext';
+import { useChartsDataContext } from '../Charts';
 
 const Values = () => {
-  const {candles, step, translateX} = useCandleChartContext();
-  const {selectedCandlestickData} = useChartsDataContext();
-  const {value, date} = useChartsDataContext();
+  const { candles, step, translateX } = useCandleChartContext();
+  const { selectedCandlestickData } = useChartsDataContext();
+  const { value, date } = useChartsDataContext();
   useDerivedValue(() => {
     const c =
       candles[Math.floor(translateX.value / step)] ||
@@ -25,13 +25,13 @@ const Values = () => {
     return `${formatCurrency(selectedCandlestickData?.value?.open || 0)}`;
   });
   const close = useDerivedValue(
-    () => `${formatCurrency(selectedCandlestickData?.value?.close || 0)}`,
+    () => `${formatCurrency(selectedCandlestickData?.value?.close || 0)}`
   );
   const low = useDerivedValue(
-    () => `${formatCurrency(selectedCandlestickData?.value?.low || 0)}`,
+    () => `${formatCurrency(selectedCandlestickData?.value?.low || 0)}`
   );
   const high = useDerivedValue(
-    () => `${formatCurrency(selectedCandlestickData?.value?.high || 0)}`,
+    () => `${formatCurrency(selectedCandlestickData?.value?.high || 0)}`
   );
 
   return (

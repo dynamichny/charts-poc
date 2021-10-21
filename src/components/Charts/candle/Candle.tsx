@@ -1,8 +1,8 @@
 import React from 'react';
-import {Line, Rect} from 'react-native-svg';
+import { Line, Rect } from 'react-native-svg';
 
-import {red, green} from '../../Constants';
-import {useCandleChartContext} from './CandleChartContext';
+import { red, green } from '../../../constants/colors';
+import { useCandleChartContext } from './CandleChartContext';
 
 const MARGIN = 2;
 
@@ -21,10 +21,9 @@ interface CandleProps {
   width: number;
 }
 
-const Candle = ({candle, index, width}: CandleProps) => {
-  const {scaleY, scaleBody} = useCandleChartContext();
-  const {close, open, high, low} = candle;
- // const fill = close > open ? '#4AFA9A' : '#E33F64';
+const Candle = ({ candle, index, width }: CandleProps) => {
+  const { scaleY, scaleBody } = useCandleChartContext();
+  const { close, open, high, low } = candle;
   const fill = close > open ? green[50] : red[70];
   const x = index * width;
   const max = Math.max(open, close);
@@ -46,7 +45,7 @@ const Candle = ({candle, index, width}: CandleProps) => {
         height={scaleBody(max - min)}
         stroke={fill}
         rx={1}
-        {...{fill}}
+        {...{ fill }}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {violet, grey} from './Constants';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { violet, grey } from '../constants/colors';
 
 interface Props {
   label?: string;
@@ -9,15 +9,16 @@ interface Props {
   children?: JSX.Element;
 }
 
-export default function Button({label, onPress, isActive, children}: Props) {
+export default function Button({ label, onPress, isActive, children }: Props) {
   return (
     <View style={[styles.button, isActive ? styles.buttonActive : {}]}>
       <TouchableOpacity
         onPress={onPress}
         style={styles.touchable}
-        activeOpacity={0.8}>
+        activeOpacity={0.8}
+      >
         {children ? (
-          <View style={{paddingVertical: 8}}>{children}</View>
+          <View style={{ paddingVertical: 8 }}>{children}</View>
         ) : (
           <Text style={[styles.text, isActive ? styles.textActive : {}]}>
             {label?.toUpperCase()}
@@ -41,6 +42,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {color: '#000', fontSize: 14, fontWeight: '700', paddingVertical: 8},
-  textActive: {color: '#fff'},
+  text: { color: '#000', fontSize: 14, fontWeight: '700', paddingVertical: 8 },
+  textActive: { color: '#fff' },
 });

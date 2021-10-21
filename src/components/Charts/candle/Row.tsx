@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import {ReText} from 'react-native-redash';
+import { ReText } from 'react-native-redash';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +31,7 @@ interface RowProps {
   value: Animated.SharedValue<string>;
 }
 
-const Row = ({label, value}: RowProps) => {
+const Row = ({ label, value }: RowProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
